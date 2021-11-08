@@ -1,20 +1,181 @@
-set nocompatible
 let mapleader=" "
+
+""""""""""""""""""""""""""""""
+" Set
+""""""""""""""""""""""""""""""
+syntax on "開啟高亮
+set nocompatible
+set nu "顯示行號
 set wildmenu
 set ambiwidth=double
-set nu
+
 set showmatch
-syntax on
 set smartindent
 set tabstop=2
 set shiftwidth=2
 set expandtab
-set cursorline
+set cursorline  "突出顯示當前行
 set wrap
 set showcmd
 set ignorecase
-set mouse=a
+set laststatus=2
+set encoding=UTF-8
 
+"啟用滑鼠
+set mouse=a
+set selection=exclusive
+set selectmode=mouse,key
+
+set guifont=DroidSansMono\ Nerd\ Font\ 10
+"set guifont=JetBrainsMonoNL\ Nerd\ Font\ 10
+""""""""""""""""""""""""""""""
+
+
+
+""""""""""""""""""""""""""""""
+" Plug
+""""""""""""""""""""""""""""""
+call plug#begin('~/.vim/plugged')
+Plug 'Yggdroot/indentLine'
+Plug 'crusoexia/vim-monokai'
+Plug 'ervandew/supertab'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'majutsushi/tagbar'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'luochen1990/rainbow'
+Plug 'scrooloose/nerdtree'
+Plug 'ryanoasis/vim-devicons'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'mhinz/vim-startify'
+Plug 'iamcco/mathjax-support-for-mkdp'
+Plug 'iamcco/markdown-preview.vim'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'xuyuanp/nerdtree-git-plugin'
+call plug#end()
+""""""""""""""""""""""""""""""
+
+
+
+""""""""""""""""""""""""""""""
+"nerdtree
+""""""""""""""""""""""""""""""
+"自動開啟 Nerdtree
+"autocmd vimenter * NERDTree  
+
+"當NERDTree為剩下的唯一窗口時自動關閉
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
+
+let g:NERDTreeWinSize = 30 "設定 NERDTree 視窗大小
+
+"修改樹的顯示圖示
+"let g:NERDTreeDirArrowExpandable = '▸'
+"let g:NERDTreeDirArrowCollapsible = '▾'
+let g:NERDTreeDirArrowExpandable = '+'
+let g:NERDTreeDirArrowCollapsible = '-'
+"let g:NERDTreeDirArrowExpandable = '|'
+"let g:NERDTreeDirArrowCollapsible = '/'
+
+let g:NERDTreeShowLineNumbers=1  "顯示行號
+let g:NERDTreeHidden=0  "Show hide file
+let g:NERDTreeWinPos='left' "視窗位置
+"let NERDTreeMinimalUI=1 "Delete help information at the top
+""""""""""""""""""""""""""""""
+
+
+
+""""""""""""""""""""""""""""""
+"nerdtree-git-plugin settings
+""""""""""""""""""""""""""""""
+let g:NERDTreeShowIgnored = 1
+
+let g:NERDTreeGitStatusIndicatorMapCustom = {
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ 'Ignored'   : '☒',
+    \ "Unknown"   : "?"
+    \ }
+""""""""""""""""""""""""""""""
+
+
+
+""""""""""""""""""""""""""""""
+"vim-devicons settings
+""""""""""""""""""""""""""""""
+set encoding=UTF-8
+
+"Can be enabled or disabled
+let g:webdevicons_enable_nerdtree = 1
+
+"whether or not to show the nerdtree brackets around flags
+let g:webdevicons_conceal_nerdtree_brackets = 1
+
+"adding to vim-airline's tabline
+let g:webdevicons_enable_airline_tabline = 1
+
+"adding to vim-airline's statusline
+let g:webdevicons_enable_airline_statusline = 1
+""""""""""""""""""""""""""""""
+
+
+
+""""""""""""""""""""""""""""""
+"vim-nerdtree-syntax-highlight settings
+""""""""""""""""""""""""""""""
+"Highlight full name (not only icons). You need to add this if you don't have vim-devicons and want highlight.
+let g:NERDTreeFileExtensionHighlightFullName = 1
+let g:NERDTreeExactMatchHighlightFullName = 1
+let g:NERDTreePatternMatchHighlightFullName = 1
+
+"Highlight full name (not only icons). You need to add this if you don't have vim-devicons and want highlight.
+let g:NERDTreeHighlightFolders = 1
+
+"highlights the folder name
+let g:NERDTreeHighlightFoldersFullName = 1
+
+"you can add these colors to your .vimrc to help customizing
+let s:brown = "905532"
+let s:aqua =  "3AFFDB"
+let s:blue = "689FB6"
+let s:darkBlue = "44788E"
+let s:purple = "834F79"
+let s:lightPurple = "834F79"
+let s:red = "AE403F"
+let s:beige = "F5C06F"
+let s:yellow = "F09F17"
+let s:orange = "D4843E"
+let s:darkOrange = "F16529"
+let s:pink = "CB6F6F"
+let s:salmon = "EE6E73"
+let s:green = "8FAA54"
+let s:Turquoise = "40E0D0"
+let s:lightGreen = "31B53E"
+let s:white = "FFFFFF"
+let s:rspec_red = "FE405F"
+let s:git_orange = "F54D27"
+let s:gray = "808A87"
+
+let g:NERDTreeExtensionHighlightColor = {} " this line is needed to avoid error
+let g:NERDTreeExtensionHighlightColor['o'] = s:gray " sets the color of o files to blue
+let g:NERDTreeExtensionHighlightColor['h'] = s:blue " sets the color of h files to blue
+let g:NERDTreeExtensionHighlightColor['c'] = s:green " sets the color of c files to blue
+let g:NERDTreeExtensionHighlightColor['cpp'] = s:green " sets the color of cpp files to blue
+let g:NERDTreeExtensionHighlightColor['c++'] = s:green " sets the color of c++ files to blue
+""""""""""""""""""""""""""""""
+
+
+
+""""""""""""""""""""""""""""""
+" Map
+""""""""""""""""""""""""""""""
 imap jk <Esc>
 nmap <space> :
 
@@ -27,21 +188,25 @@ map <LEADER>w <C-w>k
 map <LEADER>a <C-w>h
 map <LEADER>s <C-w>j
 
-call plug#begin('~/.vim/plugged')
-Plug 'scrooloose/nerdtree'
-Plug 'Yggdroot/indentLine'
-Plug 'crusoexia/vim-monokai'
-Plug 'ervandew/supertab'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'majutsushi/tagbar'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'luochen1990/rainbow'
-call plug#end()
+map <LEADER>h :split<Space>
+map <LEADER>v :vsplit<Space>
 
+nmap <F7> :TagbarToggle<CR>
 
 nmap <C-e> :NERDTreeToggle<CR>
-colo monokai
-nmap <F8> :TagbarToggle<CR>
 
-hi Normal ctermfg=252 ctermbg=none
+map <F8> :MarkdownPreview<CR>
+map <F9> :MarkdownPreviewStop<CR>
+""""""""""""""""""""""""""""""
+
+
+
+""""""""""""""""""""""""""""""
+" Other
+""""""""""""""""""""""""""""""
+let g:startify_files_number = 20
+
+let g:airline_powerline_fonts = 1
+
+colo monokai
+""""""""""""""""""""""""""""""
