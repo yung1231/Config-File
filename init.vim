@@ -25,11 +25,7 @@ set encoding=UTF-8
 set mouse=a
 set selection=exclusive
 set selectmode=mouse,key
-
-set guifont=DroidSansMono\ Nerd\ Font\ 10
-"set guifont=JetBrainsMonoNL\ Nerd\ Font\ 10
 """"""""""""""""""""""""""""""
-
 
 
 """"""""""""""""""""""""""""""
@@ -44,17 +40,17 @@ Plug 'majutsushi/tagbar'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'luochen1990/rainbow'
-Plug 'scrooloose/nerdtree'
-Plug 'ryanoasis/vim-devicons'
+Plug 'scrooloose/nerdtree'  " File tree manager
+Plug 'ryanoasis/vim-devicons'   " add beautiful icons besides files
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'mhinz/vim-startify'
 Plug 'iamcco/mathjax-support-for-mkdp'
 Plug 'iamcco/markdown-preview.vim'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plug 'xuyuanp/nerdtree-git-plugin'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'  " enhance devicons
+Plug 'xuyuanp/nerdtree-git-plugin'  " display git status within Nerdtree
+Plug 'jistr/vim-nerdtree-tabs'  " enhance nerdtree's tabs
 call plug#end()
 """"""""""""""""""""""""""""""
-
 
 
 """"""""""""""""""""""""""""""
@@ -66,9 +62,25 @@ call plug#end()
 "當NERDTree為剩下的唯一窗口時自動關閉
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
-let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
+" Open Nerdtree when there's no file opened
+"autocmd vimenter * if !argc()|NERDTree|endif
 
+">> Basic settings
+let g:NERDTreeChDirMode = 2  "Change current folder as root
+autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) |cd %:p:h |endif
+
+"let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
+
+"UI settings
+let g:NERDTreeShowLineNumbers=1  "顯示行號
+let g:NERDTreeHidden=1  " Don't show hidden files
+let g:NERDTreeWinPos='left' "視窗位置
+"let NERDTreeMinimalUI=1 "Delete help information at the top
+let NERDTreeDirArrows=1 " Display arrows instead of ascii art in NERDTree
+let NERDTreeChDirMode=2 " Change current working directory based on root directory in NERDTree
 let g:NERDTreeWinSize = 30 "設定 NERDTree 視窗大小
+let NERDTreeAutoDeleteBuffer = 1  " Auto delete buffer deleted with NerdTree
+let NERDTreeIgnore = ['\.pyc$', '\.swp', '\.swo', '__pycache__']   " Hide temp files in NERDTree
 
 "修改樹的顯示圖示
 "let g:NERDTreeDirArrowExpandable = '▸'
@@ -77,20 +89,13 @@ let g:NERDTreeDirArrowExpandable = '+'
 let g:NERDTreeDirArrowCollapsible = '-'
 "let g:NERDTreeDirArrowExpandable = '|'
 "let g:NERDTreeDirArrowCollapsible = '/'
-
-let g:NERDTreeShowLineNumbers=1  "顯示行號
-let g:NERDTreeHidden=0  "Show hide file
-let g:NERDTreeWinPos='left' "視窗位置
-"let NERDTreeMinimalUI=1 "Delete help information at the top
 """"""""""""""""""""""""""""""
-
 
 
 """"""""""""""""""""""""""""""
 "nerdtree-git-plugin settings
 """"""""""""""""""""""""""""""
-let g:NERDTreeShowIgnored = 1
-
+"let g:NERDTreeShowIgnored = 1
 let g:NERDTreeGitStatusIndicatorMapCustom = {
     \ "Modified"  : "✹",
     \ "Staged"    : "✚",
@@ -105,6 +110,14 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
     \ }
 """"""""""""""""""""""""""""""
 
+
+
+""""""""""""""""""""""""""""""
+"vim-devicons
+""""""""""""""""""""""""""""""
+set guifont=DroidSansMono\ Nerd\ Font\ 10
+"set guifont=JetBrainsMonoNL\ Nerd\ Font\ 10
+""""""""""""""""""""""""""""""
 
 
 """"""""""""""""""""""""""""""
@@ -124,7 +137,6 @@ let g:webdevicons_enable_airline_tabline = 1
 "adding to vim-airline's statusline
 let g:webdevicons_enable_airline_statusline = 1
 """"""""""""""""""""""""""""""
-
 
 
 """"""""""""""""""""""""""""""
@@ -172,7 +184,6 @@ let g:NERDTreeExtensionHighlightColor['c++'] = s:green " sets the color of c++ f
 """"""""""""""""""""""""""""""
 
 
-
 """"""""""""""""""""""""""""""
 " Map
 """"""""""""""""""""""""""""""
@@ -198,7 +209,6 @@ nmap <C-e> :NERDTreeToggle<CR>
 map <F8> :MarkdownPreview<CR>
 map <F9> :MarkdownPreviewStop<CR>
 """"""""""""""""""""""""""""""
-
 
 
 """"""""""""""""""""""""""""""
