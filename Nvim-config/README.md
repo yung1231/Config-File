@@ -1,11 +1,10 @@
 # NeoVim Configuration
-# Install
+## Install
 ```
 sudo apt-get install software-properties-common
 
 sudo add-apt-repository ppa:neovim-ppa/stable
 
-sudo apt update
-
+sudo apt
 sudo apt install -y neovim
 ```

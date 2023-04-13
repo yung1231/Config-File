@@ -1,0 +1,18 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "type": "shell",    // 可以為shell或process，前者相當於先開啟shell再輸入命令，後者是直接執行命令
+            "command": "g++",
+            // "command": "clang++",    // 要使用的編譯器
+            "args": [
+                "-g", "${file}", "-o", "${fileBasenameNoExtension}.exe"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true   // 設為 false 可做到一個 tasks.json 配置多個編譯指令，需要自己修改本檔案
+            }
+        }
+    ]
+}
