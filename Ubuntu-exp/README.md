@@ -10,6 +10,55 @@ lsb_release -a
 
 ![](https://i.imgur.com/NxZW0Hl.png)
 
+## Remote Desktop
+> windows to ubuntu
+```bash
+sudo apt install xrdp
+
+sudo systemctl enable --now xrdp
+
+sudo ufw allow from any to any port 3389 proto tcp
+```
+
+You can log in using remote desktop.
+
+## ssh
+### Create from ubuntu
+```bash
+ssh-keygen
+
+cat id_rsa.pub >> authorized_keys
+
+chmod 600 authorized_keys
+
+chmod 700 ~/.ssh
+```
+
+```bash
+code /etc/ssh/sshd_config
+
+RSAAuthentication yes
+PubkeyAuthentication yes
+PermitRootLogin yes
+
+service sshd restart
+
+# Close password login after confirming successful login.
+PasswordAuthentication no
+```
+
+> To put id_rsa inside the .ssh folder on Windows.
+
+### Create from windows
+```bash
+ssh-keygen
+```
+
+```bash
+# Copy id_rsa.pub to the .ssh folder on Linux.
+cat id_rsa.pub >> authorized_keys
+```
+
 ## Nvidia Driver
 ```bash
 sudo apt-get install -y nvidia-common
@@ -50,8 +99,9 @@ Because the nvidia driver has been installed, so did not choose to install the n
 Add to `.bashrc`
 
 ```bash
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda/lib64
-export PATH=$PATH:/usr/local/cuda/bin
+export PATH=/usr/local/cuda/bin:$PATH  
+export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
+export CUDA_HOME=/usr/local/cuda
 ```
 
 ```bash
@@ -68,6 +118,13 @@ Go to `/usr/local` and run
 
 ```bash
 stat cuda
+```
+
+### Switching CUDA
+```bash
+sudo rm -rf cuda
+
+sudo ln -s /usr/local/cuda-11.3 /usr/local/cuda
 ```
 
 ## cuDNN
