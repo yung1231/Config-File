@@ -1,0 +1,18 @@
+version: '3'
+services:
+  code-server:
+    image: codercom/code-server:latest
+    container_name: code-server
+    ports:
+      - "1231:8080"
+    volumes:
+      - "$HOME/.config:/home/coder/.config"
+      - "/data/project:/home/coder/project"
+    environment:
+      - DOCKER_USER=$USER
+      - PASSWORD=3305074
+      - SUDO_PASSWORD=password
+      - UID=`id -u`
+      - GID=`id -g`
+    user: "${UID}:${GID}"
+    restart: always
