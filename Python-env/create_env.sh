@@ -8,7 +8,14 @@ BLUE='\033[0;36m'
 NC='\033[0m'
 
 echo -e "${GREEN}[+] Install Python versions${NC}"
+source ~/.bashrc
 pyenv install -l
+if pyenv install -l; then
+  echo ""
+else
+  echo -e "${RED}[-] pyenv install -l command Error${NC}"
+  exit 1
+fi
 read -p "Please enter the version of Python to install (default 3.7.8): " -e -i "3.7.8" python_version
 if pyenv install "$python_version"; then
   echo -e "${BLUE}[~] Python $python_version installed successfully${NC}"

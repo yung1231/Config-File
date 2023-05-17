@@ -5,15 +5,15 @@ RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[0;33m'
 BLUE='\033[0;36m'
-NC='\033[0m'
+NC='\033[0m'  # 重置颜色
 
-echo -e "${GREEN}[+] apt update${NC}"
+echo -e "${GREEN}[+] Init${NC}"
 apt update -y
 if [ "$EUID" -eq 0 ]; then
-  echo -e "${YELLOW}[~] Running as root user${NC}"
+  echo -e "${YELLOW}[~] Running as root user.${NC}"
   apt install -y sudo
 else
-  echo -e "${YELLOW}[~] Running as non-root user${NC}"
+  echo -e "${YELLOW}[~] Running as non-root user.${NC}"
 fi
 
 
@@ -37,4 +37,4 @@ echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
 echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> ~/.bashrc
 source ~/.bashrc
 
-echo "${GREEN}[+] Finish${NC}"
+echo -e "${GREEN}[+] Finish${NC}"
