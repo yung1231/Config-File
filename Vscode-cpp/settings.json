@@ -1,18 +1,79 @@
 {
+    "files.defaultLanguage": "c",   // ctrl+n 後預設的語言
     "files.associations": {
-        "iosfwd": "cpp",
-        "ostream": "cpp",
-        "iostream": "cpp",
-        "*.tcc": "cpp",
-        "unordered_map": "cpp",
-        "unordered_set": "cpp",
-        "string_view": "cpp",
         "cmath": "cpp",
-        "iomanip": "cpp",
-        "numeric": "cpp",
-        "chrono": "cpp",
+        "cstddef": "cpp",
+        "cstdint": "cpp",
+        "cstdio": "cpp",
+        "cstdlib": "cpp",
+        "cstring": "cpp",
+        "cwchar": "cpp",
+        "exception": "cpp",
+        "initializer_list": "cpp",
+        "ios": "cpp",
+        "iosfwd": "cpp",
+        "iostream": "cpp",
+        "istream": "cpp",
         "limits": "cpp",
-        "valarray": "cpp"
+        "memory": "cpp",
+        "new": "cpp",
+        "ostream": "cpp",
+        "stdexcept": "cpp",
+        "streambuf": "cpp",
+        "string": "cpp",
+        "system_error": "cpp",
+        "tuple": "cpp",
+        "type_traits": "cpp",
+        "typeinfo": "cpp",
+        "utility": "cpp",
+        "xfacet": "cpp",
+        "xiosbase": "cpp",
+        "xlocale": "cpp",
+        "xlocinfo": "cpp",
+        "xlocnum": "cpp",
+        "xmemory": "cpp",
+        "xmemory0": "cpp",
+        "xstddef": "cpp",
+        "xstring": "cpp",
+        "xtr1common": "cpp",
+        "xutility": "cpp",
+        "stdio.h": "c",
+        "stdlib.h": "c"
     },
-    "C_Cpp.errorSquiggles": "Disabled"
+    "editor.formatOnType": true,    // 輸入分號(C/C++的語句結束標識)後自動格式化當前這一行的程式碼
+    "editor.suggest.snippetsPreventQuickSuggestions": false,    // clangd 的 snippets 有很多的跳轉點，不用這個就必須手動觸發 Intellisense 了
+    "editor.acceptSuggestionOnEnter": "off",    // 按回車時一定是真正的換行，只有 tab 才會接受 Intellisense
+    // "editor.snippetSuggestions": "top",  // （可選）snippets 顯示在補全列表頂端，預設是 inline
+    "code-runner.runInTerminal": true,  // 設定成 false 會在"輸出"中輸出，無法輸入
+    "code-runner.executorMap": {
+        "c": "gcc '$fileName' -o '$fileNameWithoutExt.exe' -Wall -O2 -lm -static-libgcc -std=c11 -fexec-charset=GBK && &'./$fileNameWithoutExt.exe'",   // 把 -m64 拿掉了，不然無法執行
+        "cpp": "g++ '$fileName' -o '$fileNameWithoutExt.exe' -Wall -O2 -static-libgcc -std=gnu++14 -fexec-charset=GBK && &'./$fileNameWithoutExt.exe'"  // 把 -m64 拿掉了，不然無法執
+        // "c": "gcc $fileName -o $fileNameWithoutExt.exe -Wall -O2 -m64 -lm -static-libgcc -std=c11 -fexec-charset=GBK && $dir$fileNameWithoutExt.exe",
+        // "cpp": "g++ $fileName -o $fileNameWithoutExt.exe -Wall -O2 -m64 -static-libgcc -std=gnu++14 -fexec-charset=GBK && $dir$fileNameWithoutExt.exe"
+    }, // 右鍵run code時執行的命令；未註釋的僅適用於PowerShell（Win10預設）和pwsh，檔名中有空格也可以編譯執行；註釋掉的適用於cmd（win7預設）、PS和bash，但檔名中有空格時無法執行
+    "code-runner.saveFileBeforeRun": true,  // run code 前儲存
+    "code-runner.preserveFocus": true,  // 若為 false，run code 後游標會聚焦到終端上。如果需要頻繁輸入資料可設為 false
+    "code-runner.clearPreviousOutput": false,   // 每次 run code 前清空屬於 code runner 的終端訊息，預設 false
+    "code-runner.ignoreSelection": true,    // 預設為 false，效果是滑鼠選中一塊程式碼後可以單獨執行，但 C 是編譯型語言，不適合這樣用
+    "code-runner.fileDirectoryAsCwd": true, // 將 code runner 終端的工作目錄切換到檔案目錄再執行，對依賴 cwd 的程式產生影響；如果為 false，executorMap 要加cd $dir
+    "C_Cpp.clang_format_sortIncludes": true,    // 格式化時調整 include 的順序（按字母排序）
+    // "C_Cpp.errorSquiggles": "Disabled"
 }
+// {
+//     "files.associations": {
+//         "iosfwd": "cpp",
+//         "ostream": "cpp",
+//         "iostream": "cpp",
+//         "*.tcc": "cpp",
+//         "unordered_map": "cpp",
+//         "unordered_set": "cpp",
+//         "string_view": "cpp",
+//         "cmath": "cpp",
+//         "iomanip": "cpp",
+//         "numeric": "cpp",
+//         "chrono": "cpp",
+//         "limits": "cpp",
+//         "valarray": "cpp"
+//     },
+//     "C_Cpp.errorSquiggles": "Disabled"
+// }

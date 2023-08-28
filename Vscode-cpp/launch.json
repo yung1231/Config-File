@@ -5,22 +5,54 @@
             "name": "(gdb) Launch", // 會在啟動配置的下拉選單中顯示
             "type": "cppdbg",   // 配置型別，這裡只能為 cppdbg
             "request": "launch",
-            "program": "${workspaceRoot}/${fileBasenameNoExtension}.exe",   // 要進行除錯的程式的路徑
+            // "program": "${workspaceRoot}/${fileBasenameNoExtension}.exe",   // 要進行除錯的程式的路徑
+            "program": "${fileDirname}/${fileBasenameNoExtension}.exe",   // 要進行除錯的程式的路徑
             "args": [], // 除錯時傳遞給程式的命令列引數
             "stopAtEntry": false,   // 設為 true 時程式將暫停在程式入口處，一般習慣為 true
-            "cwd": "${workspaceRoot}",
+            // "cwd": "${workspaceRoot}",
+            "cwd": "${workspaceFolder}",
             "environment": [],
             "externalConsole": true,    // 除錯時是否顯示控制檯視窗，一般設定為 true 顯示控制檯
+            "internalConsoleOptions": "neverOpen", // 如果不設為 neverOpen，偵錯時會跳到"偵錯控制檯"索引標籤
             "MIMode": "gdb",    // 指定連線的偵錯程式，可以為gdb或lldb
-            "miDebuggerPath": "C:\\MinGW\\bin\\gdb.exe",    // 偵錯程式路徑
+            // "miDebuggerPath": "C:\\MinGW\\bin\\gdb.exe",    // 偵錯程式路徑
+            "miDebuggerPath": "gdb.exe",    // 偵錯程式路徑
             "setupCommands": [
                 {
                     "description": "Enable pretty-printing for gdb",
                     "text": "-enable-pretty-printing",
-                    "ignoreFailures": true
+                    // "ignoreFailures": true
+                    "ignoreFailures": false
                 }
             ],
-            "preLaunchTask": "build"
+            // "preLaunchTask": "build"  // 偵錯對談開始前執行的任務，一般為編譯程式。與 tasks.json 的 label 相對應
+            "preLaunchTask": "compile"  // 偵錯對談開始前執行的任務，一般為編譯程式。與 tasks.json 的 label 相對應
         }
     ]
 }
+// {
+//     "version": "0.2.0",
+//     "configurations": [
+//         {
+//             "name": "(gdb) Launch", // 會在啟動配置的下拉選單中顯示
+//             "type": "cppdbg",   // 配置型別，這裡只能為 cppdbg
+//             "request": "launch",
+//             "program": "${workspaceRoot}/${fileBasenameNoExtension}.exe",   // 要進行除錯的程式的路徑
+//             "args": [], // 除錯時傳遞給程式的命令列引數
+//             "stopAtEntry": false,   // 設為 true 時程式將暫停在程式入口處，一般習慣為 true
+//             "cwd": "${workspaceRoot}",
+//             "environment": [],
+//             "externalConsole": true,    // 除錯時是否顯示控制檯視窗，一般設定為 true 顯示控制檯
+//             "MIMode": "gdb",    // 指定連線的偵錯程式，可以為gdb或lldb
+//             "miDebuggerPath": "C:\\MinGW\\bin\\gdb.exe",    // 偵錯程式路徑
+//             "setupCommands": [
+//                 {
+//                     "description": "Enable pretty-printing for gdb",
+//                     "text": "-enable-pretty-printing",
+//                     "ignoreFailures": true
+//                 }
+//             ],
+//             "preLaunchTask": "build"
+//         }
+//     ]
+// }
