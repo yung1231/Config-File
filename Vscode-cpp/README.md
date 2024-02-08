@@ -24,6 +24,14 @@ g++ --version
 gdb --version
 ```
 
+If `gdb` does not exist, install it manually.
+
+```bash
+cd C:\MinGW\bin
+mingw-get install gdb
+gdb --version
+```
+
 ## Configure the C/C++ environment
 ![](https://i.imgur.com/Ol7YCM0.png)
 
