@@ -4,27 +4,49 @@ let mapleader=" "
 " Set
 """"""""""""""""""""""""""""""
 syntax on "開啟高亮
+
+set t_Co=256    " 支援 256 色
+set background=dark     " 設定深色背景
+" 內建風格 ( 縮寫指令 colo )
+" 輸入 colorscheme 空一格，再按 Tab 可以依次預覽 : 
+" blue / darkblue / default / delek / desert / eldlord
+" evening / industry / koehler / morning / murphy / pable
+" peachpuff / ron / shine / slate / torte / zollner
+colorscheme industry
+
 set nocompatible
 set nu "顯示行號
+" set relativenumber
 set wildmenu
 set ambiwidth=double
 
 set showmatch
-set smartindent
+set smartindent       " 智慧縮排
 set tabstop=2
 set shiftwidth=2
-set expandtab
-set cursorline  "突出顯示當前行
+" set expandtab
+
+set cursorline        " 高亮顯示當前行
+set cursorcolumn      " 高亮顯示當前列
+
 set wrap
 set showcmd
-set ignorecase
-set laststatus=2
+" set laststatus=2
 set encoding=UTF-8
+
+set hlsearch          " 高亮搜尋結果
+set incsearch         " 輸入搜尋關鍵字時實時顯示匹配
+set ignorecase        " 搜尋時忽略大小寫
+
+set autoread          " 當檔案在外部被修改時自動重新讀取
 
 "啟用滑鼠
 set mouse=a
 set selection=exclusive
 set selectmode=mouse,key
+
+set history=10000000
+
 """"""""""""""""""""""""""""""
 
 
